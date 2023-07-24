@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import './Login.css'; // Import your CSS file for styling
+import App from './MainApp'; // Import the App component
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,20 +13,19 @@ const Login = ({ onLogin }) => {
     // For simplicity, we'll assume login is successful if both username and password are non-empty
     if (username && password) {
       setIsLoggedIn(true);
-      onLogin();
     }
   };
 
   if (isLoggedIn) {
-    // Redirect the user to the main application once logged in
-    return null;
+    // Show the main application content if logged in
+    return <App />;
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login Page</h2>
       <form onSubmit={handleLogin}>
-        <div>
+        <div className="input-container">
           <label>Username:</label>
           <input
             type="text"
@@ -33,7 +34,7 @@ const Login = ({ onLogin }) => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Password:</label>
           <input
             type="password"
