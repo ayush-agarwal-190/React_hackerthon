@@ -4,8 +4,12 @@ import {
   Container,
   CssBaseline,
   Fab,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Toolbar,
   Typography,
@@ -18,7 +22,7 @@ function App() {
     name: '',
     uid: '',
     complaint: '',
-    subject: '',
+    subject: '', // Initialize subject as an empty string
     audioFile: null,
   });
 
@@ -91,13 +95,21 @@ function App() {
                   value={formData.complaint}
                   onChange={handleInputChange}
                 />
-                <TextField
-                  fullWidth
-                  label="Subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                />
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="subject">Subject</InputLabel>
+                  <Select
+                    label="Subject"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                  >
+                    <MenuItem value="Math">Math</MenuItem>
+                    <MenuItem value="Science">Science</MenuItem>
+                    <MenuItem value="History">History</MenuItem>
+                    {/* Add more subjects as needed */}
+                  </Select>
+                </FormControl>
                 <input
                   accept="audio/*"
                   style={{ display: 'none' }}
